@@ -1,3 +1,3 @@
-#Syeda Maham Mohsin
+Syeda Maham Mohsin
 
-##lab1 OOP
+lab1 OOP
