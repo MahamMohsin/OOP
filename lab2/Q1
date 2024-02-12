@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//swapping 2 values using recursion by passing only two parameters
 void recursiveSwap(int &a, int &b) {
 	if(a==b){
 		return;
