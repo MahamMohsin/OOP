@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+bool hasSubsetSum(int arr[], int n, int targetsum) 
+{
+    if(targetsum == 0){
+        return true;
+    }
+
+    if(n < 0) {
+        return false;
+    }
+ 
+    bool include, exclude;
+    if(arr[n] < targetsum){
+        include = hasSubsetSum(arr, n-1, targetsum-arr[n]);
+    }
+    exclude = hasSubsetSum(arr, n-1, targetsum);
+
+    if(include || exclude)return true;
+
+    return false;
+}
+
+int main() {
+    int n;
+    cout << "Enter the size of array: ";
+    cin >> n;
+    
+    cout<<"\n";
+
+    int arr[n];
+
+    cout << "Enter the elements of array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int targetsum;
+    cout << "Enter the target sum: ";
+    cin >> targetsum;
+    
+    cout<<"\n";
+
+    if (hasSubsetSum(arr, n, targetsum)) {
+        cout << "Subset with sum " << targetsum << " exists in the array" << endl;
+    } else {
+        cout << "Subset with sum " << targetsum << " does not exist in the array" << endl;
+    }
+
+    return 0;
+}
