@@ -1,0 +1,101 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Boardmarker{
+
+string company;
+string color;
+bool refillable;
+bool inkempty;
+
+public:
+
+void setcomp(string comp){
+    company=comp;
+}
+
+void setcolor(string col){
+    color=col;
+}
+
+void setrefill(bool refill){
+    refillable=refill;
+}
+
+void setink(bool ink){
+    inkempty=ink;
+}
+
+string getcomp(){
+    return company;
+}
+
+string getcolor(){
+    return color;
+}
+
+bool getrefill(){
+    return refillable;
+}
+
+bool getink(){
+    return inkempty;
+}
+
+//Method for writing
+void inkstatus(){
+    //means ink not empty
+    if(inkempty==false){
+        cout<<"Writing using board marker of "<<company<<" in color "<<color<<endl;
+}
+    else{
+        cout<<"Ink finished refill it. \n";
+    }
+}
+
+void refillstatus(){
+    if(refillable==true){
+        cout<<"Marker refilled\n";
+    }
+    else{
+        cout<<"Cant be refilled\n";
+    }
+}
+};
+int main(){
+    Boardmarker marker;
+
+string comp;
+string col;
+bool refill;
+bool ink;
+
+cout<<"Enter marker company: \n";
+cin>>comp;
+
+cout<<"Enter marker's color: \n";
+cin>>col;
+
+cout<<"Is marker refillable: \n";
+cin>>boolalpha>>refill;
+
+cout<<"Is ink empty or not: \n";
+cin>>boolalpha>>ink;
+
+marker.setcomp(comp);
+marker.setcolor(col);
+marker.setink(ink);
+marker.setrefill(refill);
+marker.getink();
+marker.getrefill();
+
+cout<<"\nBOARD MARKER\n";
+cout<<"Company: "<<marker.getcomp()<<endl;
+cout<<"Color: "<<marker.getcolor()<<endl;
+marker.inkstatus();
+marker.refillstatus();
+
+return 0;
+}
+
