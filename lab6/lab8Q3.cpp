@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+
+class Employee{
+protected:
+    string name;
+    int age;
+    float salary;
+    string empid;
+    
+public:
+    Employee(string n, int a, float s, string id) : name(n), age(a), salary(s), empid(id) {}
+    
+    string getname(){
+        return name;
+    }
+    
+    int getage(){
+        return age;
+    }
+    
+    float getsalary(){
+        return salary;
+    }
+    
+    string getid(){
+        return empid;
+    }
+};
+
+class Faculty : public Employee{
+    string department;
+    string teachingsubs;
+    
+public:
+    Faculty(string n, int a, float s, string id, string d, string ts) : Employee(n, a, s, id), department(d), teachingsubs(ts){}
+    
+    string getdept(){
+        return department;
+    }
+    string getTeachingsubs(){
+        return teachingsubs;
+    }
+};
+
+class AdministrativeStaff : public Employee{
+    string position;
+    string officeloc;
+public:
+    AdministrativeStaff(string n, int a, float s, string id, string p, string ol) : Employee(n, a, s, id), position(p), officeloc(ol){}
+    
+    string getpos(){
+        return position;
+    }
+    string getloc(){
+        return officeloc;
+    }
+};
+
+class TeachingAssistant : public Faculty, public AdministrativeStaff{
+public:
+    TeachingAssistant(string n, int a, float s, string id, string d, string ts, string p, string ol) : Faculty(n, a, s, id, d, ts), AdministrativeStaff(n, a, s, id, p, ol){}
+};
+
+int main (){
+	
+    Faculty f("Hazel Brown", 35, 70000.0, "J121", "Computer Science", "OOP");
+    AdministrativeStaff as("James Byer", 45, 50000.0, "R201", "Manager", "EE Building");
+    TeachingAssistant TA("Chandler Bing", 24, 25000.0, "TA001", "Computer Science", "Programming", "Teaching Assistant", "CS Building");
+    
+    cout<<"Faculty Info:" << endl;
+    cout<<"Name: "<<f.getname()<<endl;
+	cout<<"Age: "<<f.getage()<<endl;
+	cout<<"Salary: "<<f.getsalary()<<endl;
+	cout<<"Emp ID: "<<f.getid()<< endl;
+    cout<<"Department: "<<f.getdept()<<endl;
+	cout<<"Teaching Subjects: "<<f.getTeachingsubs()<<endl<< endl;
+    
+    cout<<"Administrative Staff Info:" << endl;
+    cout<<"Name: "<<as.getname()<<endl;
+	cout<<"Age: "<<as.getage()<<endl;
+	cout<<"Salary: "<<as.getsalary()<<endl;
+	cout<<"Emp ID: "<<as.getid()<< endl;
+    cout<<"Position: "<< as.getpos()<<endl;
+	cout<<"Office Location: "<<as.getloc()<<endl<< endl;
+    
+	cout<<"Teaching Assistant Info:" <<endl;
+    cout<<"Name: "<<TA.Faculty::getname()<<endl;
+	cout<<"Age: "<<TA.Faculty::getage()<<endl;
+	cout<<"Salary: "<<TA.Faculty::getsalary()<<endl;
+	cout<<"Emp ID: "<<TA.Faculty::getid()<<endl;
+    cout<<"Department: "<<TA.getdept()<<", Teaching Subjects: "<<TA.getTeachingsubs()<< endl;
+    cout<<"Position: "<<TA.getpos()<<", Office Location: "<<TA.getloc()<< endl;
+    
+    return 0;
+}
