@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class shape{
+protected:
+double height;
+double width;
+
+public:
+shape(double h,double w){
+    height=h;
+    width=w;
+}
+
+virtual void display_area()=0;
+};
+
+class triangle:public shape{
+public:
+
+triangle(double h, double w):shape(h, w) {}
+
+void display_area()override{
+double area=0.5*height*width;
+cout<<"Triangle's Area:"<<area<<endl;
+}
+};
+
+class rectangle:public shape{
+public:
+
+rectangle(double h,double w):shape(h,w){}
+
+void display_area()override{
+double area=height*width;
+cout<<"Rectangle's Area:"<<area<<endl;
+}
+};
+
+int main(){
+    shape *s;
+    triangle t(2,5);
+    rectangle r(2,5);
+
+    int choice;
+    do{
+        cout<<"1.Triangle"<<endl;
+        cout<<"2.Rectangle"<<endl;
+        cout<<"0.Exiting Program"<<endl;
+
+        cout<<"Enter Choice: ";
+        cin>>choice;
+
+        if(choice==1){
+            s=&t;
+            s->display_area();
+        }
+
+        else if(choice==2){
+            s=&r;
+            s->display_area();
+        }
+}while(choice!=0);
+
+return 0;
+}
