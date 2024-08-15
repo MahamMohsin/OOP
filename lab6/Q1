@@ -1,0 +1,69 @@
+#include<iostream>
+using namespace std;
+
+class Employee{
+    string name;
+    int number;
+    int age;
+    public:
+    Employee(string n, int num, int a) : name(n), number(num), age(a) {}
+    
+    void display(){
+    	cout << "Name: " <<name<<endl;
+        cout << "Employee Number: " <<number<< endl;
+        cout << "Age: " <<age<< endl;
+	}
+};
+
+class Manager : public Employee{
+    string title;
+    float dues;
+    public:
+    Manager(string name, int number, int age, string t, float d):Employee(name, number, age), title(t), dues(d) {}
+    
+    void disp(){
+    	display();
+        cout << "Title: " <<title<<endl;
+        cout << "Club Dues: " <<dues<<endl;
+	}
+};
+
+class Scientist : public Employee{
+    string title;
+    string publication;
+    public:
+    Scientist(string name, int number, int age, string t, string p):Employee(name, number, age), title(t), publication(p){}
+    
+    void displayinfo(){
+    	Employee::display();
+        cout << "Title: " << title << endl;
+        cout << "Publication: " << publication << endl;
+	}
+};
+class Labourer : public Employee{
+    string title;
+    
+    public:
+    	Labourer(string name, int number, int age, string t):Employee(name, number, age), title(t){}
+    	
+    	void show(){
+    	Employee::display();
+        cout << "Title: " << title << endl;
+		}
+};
+
+int main(){
+    
+	Manager m("Chandler Bing", 345, 30, "Senior Manager", 700.0);
+    Scientist s("Andrew Smith", 675, 35, "Lead Scientist", "New Discoveries in Physics");
+    Labourer l("Mike Jonathan", 764, 25, "Machine Operator");
+    
+    m.disp();
+    cout<<endl;
+    s.displayinfo();
+    cout<<endl;
+    l.show();
+
+    
+return 0;
+}
