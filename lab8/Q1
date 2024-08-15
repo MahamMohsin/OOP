@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+/*making media converter as a friend class to media file would help us
+access the private members of the media file class for convertion*/ 
+class MediaFile{
+string filename;
+int size;
+
+public:
+MediaFile(string n,int s):filename(n),size(s){}
+
+void setname(string n){
+    filename=n;
+}
+void setsize(int s){
+    size=s;
+}
+string getname(){
+    return filename;
+}
+int getsize(){
+    return size;
+}
+friend class MediaConverter;
+};
+
+class MediaConverter{
+public:
+
+void Convertfile(MediaFile &obj,string newform){
+
+    cout<<"Converting "<<obj.getname()<<" to "<<newform<<endl;
+    obj.setname(newform);
+    obj.setsize(obj.getsize() + 1); 
+    cout<<"Updated format to "<<obj.getname()<<" and size to "<<obj.getsize()<<endl;
+}
+};
+int main(){
+    MediaFile m("jpg",4);
+    MediaConverter c;
+    c.Convertfile(m,"png");
+    return 0;
+}
