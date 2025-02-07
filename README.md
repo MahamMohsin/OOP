@@ -1,2 +1,1 @@
-OOP CODES
-Language: C++ & Python
+OOP CODES (C++ & Python)
